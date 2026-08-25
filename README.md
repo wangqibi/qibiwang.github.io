@@ -1,18 +1,19 @@
 # Qibi Wang's Personal Website
 
-Welcome to my personal GitHub Pages website! This is a simple, clean, and responsive single-page website built with a single, standalone HTML file.
+A personal portfolio website for Qibi Wang, built as a responsive single-page website in one standalone HTML file.
 
 ## Structure
 
 - **`index.html`** - Unified single-file portfolio containing:
-  - **Hero & Intro** (`#home`)
-  - **About & Skills** (`#about`)
-  - **Featured Projects** (`#projects`)
-  - **Contact & Socials** (`#contact`)
+  - **Home** (`#top`)
+  - **About** (`#about`)
+  - **News** (`#news`)
+  - **Education & Skills** (`#education`, `#skills`)
+  - **Contact** (`#contact`)
 
 ## Features
 
-- ✨ Clean, modern design with embedded styling
+- ✨ Clean personal portfolio design with embedded styling
 - 📱 Fully responsive (works on mobile, tablet, and desktop)
 - ⚡ Fast loading times with zero external script dependencies
 - 🔗 Smooth scrolling navigation between sections

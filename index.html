@@ -3,669 +3,162 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Qibi Wang - Personal Website</title>
+    <meta name="description" content="Qibi Wang's academic profile and research portfolio.">
+    <title>Qibi Wang | Academic Profile</title>
     <style>
-        /* CSS Reset & Variables */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
         :root {
-            --primary: #2563eb;
-            --primary-dark: #1d4ed8;
-            --primary-light: #60a5fa;
-            --accent: #3b82f6;
-            --text: #1f2937;
-            --text-light: #4b5563;
-            --text-muted: #6b7280;
-            --bg: #ffffff;
-            --bg-alt: #f8fafc;
-            --card-bg: #ffffff;
-            --border: #e2e8f0;
-            --radius: 12px;
-            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
-            --shadow-hover: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --ink: #17232e;
+            --muted: #61707a;
+            --paper: #fbfaf7;
+            --surface: #f1f3f0;
+            --line: #d8dfda;
+            --accent: #c75c3b;
+            --accent-dark: #9e3f2a;
+            --max-width: 1120px;
         }
 
-        html {
-            scroll-behavior: smooth;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            color: var(--text);
-            background-color: var(--bg);
-        }
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; background: var(--paper); }
+        body { margin: 0; color: var(--ink); background: var(--paper); font-family: Georgia, 'Times New Roman', serif; line-height: 1.65; }
+        a { color: inherit; }
+        .page-shell { width: min(calc(100% - 48px), var(--max-width)); margin: 0 auto; }
+        .site-header { border-bottom: 1px solid var(--line); }
+        .header-inner { min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 32px; }
+        .site-nav { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 24px; font-family: Arial, sans-serif; font-size: .78rem; letter-spacing: .09em; text-transform: uppercase; }
+        .site-nav a { color: var(--muted); text-decoration: none; }
+        .site-nav a:hover, .site-nav a:focus { color: var(--accent-dark); }
+        .site-layout { width: min(calc(100% - 48px), var(--max-width)); display: grid; grid-template-columns: 230px minmax(0, 1fr); gap: 44px; margin: 0 auto; }
+        .intro { padding: 38px 0 60px; text-align: left; position: sticky; top: 76px; align-self: start; }
+        .eyebrow, .section-label { margin: 0 0 15px; color: var(--accent-dark); font-family: Arial, sans-serif; font-size: .72rem; font-weight: bold; letter-spacing: .16em; text-transform: uppercase; }
+        h1, h2, h3, p { margin-top: 0; }
+        h1 { margin-bottom: 3px; color: var(--ink); font-size: 1.55rem; font-weight: bold; letter-spacing: -.035em; line-height: 1.15; }
+        .intro h1 { text-align: center; }
+        .intro .eyebrow { display: none; }
+        .intro-lede { margin-bottom: 23px; color: var(--muted); font-size: .98rem; line-height: 1.5; text-align: center; }
+        .intro-links { display: grid; gap: 11px; max-width: 300px; text-align: left; font-family: Arial, sans-serif; font-size: .8rem; }
+        .intro-links a { color: var(--ink); text-decoration: none; }
+        .intro-links a:hover, .intro-links a:focus { color: var(--accent-dark); }
+        .profile-mark { width: 175px; height: 175px; display: grid; place-items: center; margin: 0 auto 28px; background: transparent; border: 0; border-radius: 50%; overflow: hidden; position: relative; }
+        .profile-photo { width: 110%; height: 110%; display: block; object-fit: cover; object-position: 15% 50%; transform: translateY(-10px); }
+        .profile-caption { display: none; }
+        .profile-icon { display: inline-block; width: 29px; color: var(--accent-dark); font-size: 1rem; text-align: center; }
+        .content-column { min-width: 0; }
+        .section { padding: 58px 0; border-top: 1px solid var(--line); }
+        .content-column .section:first-child { border-top: 0; padding-top: 68px; }
+        .content-column .page-shell { width: auto; }
+        .section-heading { margin-bottom: 30px; }
+        .content-column .section-label { margin-bottom: 18px; font-size: 1.8rem; letter-spacing: .04em; }
+        .section-heading .section-label { margin-bottom: 0; }
+        h2 { margin-bottom: 0; font-size: clamp(2rem, 4vw, 3.4rem); font-weight: normal; letter-spacing: -.045em; line-height: 1.05; }
+        .about-copy { width: 100%; max-width: none; font-size: 1.18rem; }
+        .about-copy p:last-child { margin-bottom: 0; }
+        .news-list, .timeline-list { border-top: 1px solid var(--line); }
+        .news-item, .timeline-item { display: grid; grid-template-columns: 150px 1fr; gap: 35px; padding: 25px 0; border-bottom: 1px solid var(--line); }
+        .date { color: var(--accent-dark); font-family: Arial, sans-serif; font-size: .75rem; font-weight: bold; letter-spacing: .1em; text-transform: uppercase; }
+        .news-item h3, .timeline-item h3 { margin-bottom: 6px; font-size: 1.35rem; font-weight: normal; }
+        .news-item p, .timeline-item p { max-width: 700px; margin-bottom: 0; color: var(--muted); }
+        .details-grid { display: grid; grid-template-columns: 1fr; gap: 58px; }
+        .skill-groups { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+        .skill-group { padding-top: 15px; border-top: 2px solid var(--accent); }
+        .skill-group h3 { margin-bottom: 3px; font-size: 1.1rem; font-weight: normal; }
+        .skill-group p { margin-bottom: 0; color: var(--muted); font-size: .95rem; }
+        .language-list { display: grid; gap: 8px; margin-top: 12px; }
+        .language-row { display: flex; justify-content: space-between; gap: 14px; border-bottom: 1px solid var(--line); padding-bottom: 5px; color: var(--muted); font-size: .95rem; }
+        .language-row span:last-child { color: inherit; font-family: inherit; font-size: inherit; font-weight: normal; letter-spacing: normal; text-transform: none; text-align: right; }
+        footer { padding: 28px 0; background: var(--ink); color: #cbd2d0; font-family: Arial, sans-serif; font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; }
+        .footer-inner { display: flex; justify-content: space-between; gap: 24px; }
 
-        body {
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
-
-        /* Navigation */
-        .navbar {
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border);
-            transition: var(--transition);
-        }
-
-        .navbar .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 70px;
-        }
-
-        .logo {
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: var(--primary);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            letter-spacing: -0.5px;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 28px;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text-light);
-            font-weight: 500;
-            font-size: 0.95rem;
-            transition: var(--transition);
-            position: relative;
-            padding: 4px 0;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary);
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0%;
-            height: 2px;
-            background: var(--primary);
-            transition: var(--transition);
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        /* Buttons */
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            padding: 12px 26px;
-            font-size: 0.95rem;
-            font-weight: 600;
-            border-radius: 8px;
-            text-decoration: none;
-            transition: var(--transition);
-            cursor: pointer;
-            border: none;
-        }
-
-        .btn-primary {
-            background-color: var(--primary);
-            color: white;
-            box-shadow: 0 4px 14px 0 rgba(37, 99, 235, 0.35);
-        }
-
-        .btn-primary:hover {
-            background-color: var(--primary-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.45);
-        }
-
-        .btn-secondary {
-            background-color: transparent;
-            color: white;
-            border: 2px solid rgba(255, 255, 255, 0.8);
-        }
-
-        .btn-secondary:hover {
-            background-color: rgba(255, 255, 255, 0.15);
-            transform: translateY(-2px);
-        }
-
-        .btn-outline {
-            background-color: transparent;
-            color: var(--primary);
-            border: 1.5px solid var(--primary);
-        }
-
-        .btn-outline:hover {
-            background-color: var(--primary);
-            color: white;
-            transform: translateY(-2px);
-        }
-
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, #1e40af 0%, #2563eb 50%, #3b82f6 100%);
-            color: white;
-            padding: 110px 0 100px;
-            text-align: center;
-            position: relative;
-        }
-
-        .hero-badge {
-            display: inline-block;
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(8px);
-            padding: 6px 16px;
-            border-radius: 50px;
-            font-size: 0.85rem;
-            font-weight: 500;
-            margin-bottom: 24px;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-        }
-
-        .hero h1 {
-            font-size: 3.2rem;
-            font-weight: 800;
-            line-height: 1.15;
-            margin-bottom: 20px;
-            letter-spacing: -1px;
-        }
-
-        .hero p {
-            font-size: 1.25rem;
-            max-width: 620px;
-            margin: 0 auto 36px;
-            opacity: 0.92;
-            font-weight: 400;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 16px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        /* Section Layout */
-        section {
-            padding: 90px 0;
-        }
-
-        .section-header {
-            text-align: center;
-            max-width: 600px;
-            margin: 0 auto 50px;
-        }
-
-        .section-tag {
-            color: var(--primary);
-            font-weight: 600;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 8px;
-            display: block;
-        }
-
-        .section-title {
-            font-size: 2.2rem;
-            font-weight: 700;
-            color: var(--text);
-            letter-spacing: -0.5px;
-        }
-
-        .section-desc {
-            color: var(--text-muted);
-            margin-top: 10px;
-            font-size: 1.05rem;
-        }
-
-        /* About Section */
-        #about {
-            background-color: var(--bg);
-        }
-
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1.2fr 0.8fr;
-            gap: 48px;
-            align-items: start;
-        }
-
-        .about-text p {
-            color: var(--text-light);
-            font-size: 1.05rem;
-            line-height: 1.8;
-            margin-bottom: 20px;
-        }
-
-        .skills-card {
-            background: var(--bg-alt);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 32px;
-        }
-
-        .skills-card h3 {
-            font-size: 1.2rem;
-            color: var(--text);
-            margin-bottom: 20px;
-            font-weight: 600;
-        }
-
-        .skills-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .skill-tag {
-            background: var(--bg);
-            border: 1px solid var(--border);
-            color: var(--primary-dark);
-            padding: 8px 14px;
-            border-radius: 6px;
-            font-size: 0.88rem;
-            font-weight: 500;
-            transition: var(--transition);
-        }
-
-        .skill-tag:hover {
-            border-color: var(--primary);
-            background: rgba(37, 99, 235, 0.05);
-            transform: translateY(-2px);
-        }
-
-        /* Projects Section */
-        #projects {
-            background-color: var(--bg-alt);
-        }
-
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 28px;
-        }
-
-        .project-card {
-            background: var(--card-bg);
-            border-radius: var(--radius);
-            padding: 32px;
-            border: 1px solid var(--border);
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .project-card:hover {
-            transform: translateY(-6px);
-            box-shadow: var(--shadow-hover);
-            border-color: var(--primary-light);
-        }
-
-        .project-icon {
-            width: 48px;
-            height: 48px;
-            border-radius: 10px;
-            background: rgba(37, 99, 235, 0.1);
-            color: var(--primary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.3rem;
-            margin-bottom: 20px;
-        }
-
-        .project-card h3 {
-            font-size: 1.25rem;
-            color: var(--text);
-            margin-bottom: 12px;
-            font-weight: 600;
-        }
-
-        .project-card p {
-            color: var(--text-light);
-            font-size: 0.95rem;
-            line-height: 1.6;
-            margin-bottom: 20px;
-            flex-grow: 1;
-        }
-
-        .project-link {
-            color: var(--primary);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.9rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            transition: var(--transition);
-        }
-
-        .project-link:hover {
-            gap: 10px;
-            color: var(--primary-dark);
-        }
-
-        /* Contact Section */
-        #contact {
-            background-color: var(--bg);
-        }
-
-        .contact-card {
-            max-width: 680px;
-            margin: 0 auto;
-            background: var(--bg-alt);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 40px;
-            box-shadow: var(--shadow);
-        }
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 24px;
-            margin-top: 24px;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            padding: 16px;
-            background: var(--bg);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            text-decoration: none;
-            color: var(--text);
-            transition: var(--transition);
-        }
-
-        .contact-item:hover {
-            border-color: var(--primary);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.08);
-        }
-
-        .contact-icon {
-            width: 42px;
-            height: 42px;
-            border-radius: 8px;
-            background: rgba(37, 99, 235, 0.1);
-            color: var(--primary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.1rem;
-            flex-shrink: 0;
-        }
-
-        .contact-details h4 {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            margin-bottom: 2px;
-        }
-
-        .contact-details span {
-            font-size: 0.95rem;
-            font-weight: 500;
-            color: var(--text);
-            word-break: break-all;
-        }
-
-        /* Footer */
-        footer {
-            background-color: #0f172a;
-            color: #94a3b8;
-            padding: 36px 0;
-            text-align: center;
-            font-size: 0.9rem;
-        }
-
-        footer .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 16px;
-        }
-
-        footer a {
-            color: #cbd5e1;
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-        footer a:hover {
-            color: white;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.3rem;
-            }
-
-            .hero p {
-                font-size: 1.1rem;
-            }
-
-            .about-grid {
-                grid-template-columns: 1fr;
-                gap: 32px;
-            }
-
-            .nav-links {
-                gap: 16px;
-            }
-
-            .nav-links a {
-                font-size: 0.9rem;
-            }
-
-            .contact-card {
-                padding: 24px;
-            }
-
-            footer .container {
-                flex-direction: column;
-                text-align: center;
-            }
+        @media (max-width: 760px) {
+            .page-shell { width: min(calc(100% - 34px), var(--max-width)); }
+            .site-layout { width: min(calc(100% - 34px), var(--max-width)); display: block; }
+            .header-inner { align-items: flex-start; flex-direction: column; padding: 20px 0; gap: 15px; }
+            .site-nav { justify-content: flex-start; gap: 12px 18px; }
+            .intro { padding: 64px 0 72px; text-align: center; position: static; }
+            .profile-mark { width: 175px; height: 175px; margin: 0 auto 40px; }
+            .intro-links { margin: 0 auto; }
+            .section { padding: 62px 0; }
+            .section-heading { grid-template-columns: 1fr; gap: 12px; margin-bottom: 28px; }
+            .news-item, .timeline-item { grid-template-columns: 1fr; gap: 5px; padding: 20px 0; }
+            .details-grid { grid-template-columns: 1fr; gap: 58px; }
+            .skill-groups { grid-template-columns: 1fr; gap: 22px; }
+            .footer-inner { align-items: flex-start; flex-direction: column; gap: 5px; }
         }
     </style>
 </head>
 <body>
-
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="container">
-            <a href="#home" class="logo">
-                <span>⚡</span> Qibi Wang
-            </a>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
+    <header class="site-header">
+        <div class="page-shell header-inner">
+            <nav class="site-nav" aria-label="Main navigation">
+                <a href="#about">About</a>
+                <a href="#news">News</a>
+                <a href="#education">Education</a>
+                <a href="#skills">Skills</a>
+            </nav>
         </div>
-    </nav>
+    </header>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="container">
-            <span class="hero-badge">Welcome to my space</span>
-            <h1>Hi, I'm Qibi Wang</h1>
-            <p>Developer & Problem Solver crafting clean, modern, and scalable web experiences.</p>
-            <div class="hero-buttons">
-                <a href="#projects" class="btn btn-secondary">View Projects</a>
-                <a href="#contact" class="btn btn-primary">Get In Touch</a>
+    <main id="top">
+    <div class="site-layout">
+        <aside class="intro" aria-labelledby="intro-title">
+            <div class="profile-mark" aria-label="Portrait of Qibi Wang">
+                <img class="profile-photo" src="Portrait.JPG" alt="Portrait of Qibi Wang">
             </div>
-        </div>
-    </section>
 
-    <!-- About Section -->
-    <section id="about">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag">About Me</span>
-                <h2 class="section-title">Passionate About Building</h2>
-                <p class="section-desc">A brief look into my background, focus areas, and toolset.</p>
+            <h1 id="intro-title">Qibi Wang</h1>
+            <p class="intro-lede">PhD student, Psycholinguist</p>
+            <div class="intro-links">
+                <a href="https://www.uni-stuttgart.de/" target="_blank" rel="noopener noreferrer"><span class="profile-icon" aria-hidden="true">⌂</span>University of Stuttgart</a>
+                <span><span class="profile-icon" aria-hidden="true">●</span>Stuttgart, Germany</span>
+                <a href="mailto:qibi.wang@ling.uni-stuttgart.de"><span class="profile-icon" aria-hidden="true">✉</span>qibi.wang@ling.uni-stuttgart.de</a>
+                <a href="https://orcid.org/0009-0009-3322-3706" target="_blank" rel="noopener noreferrer"><span class="profile-icon" aria-hidden="true">iD</span>ORCID</a>
             </div>
-            
-            <div class="about-grid">
-                <div class="about-text">
-                    <p>
-                        I'm a developer passionate about building high-performance, elegant web applications and solving complex technical challenges through clean, maintainable code.
-                    </p>
-                    <p>
-                        With a focus on modern web standards and responsive design, I build intuitive user interfaces and robust architectures tailored for speed and usability.
-                    </p>
-                    <a href="#contact" class="btn btn-outline" style="margin-top: 12px;">Let's Work Together →</a>
+        </aside>
+
+        <div class="content-column">
+        <section class="section" id="about">
+            <div class="page-shell">
+                <div class="section-heading"><p class="section-label">ABOUT</p></div>
+                <div class="about-copy">
+                    <p>I am a PhD student in the Psycholinguistic and Cognitive Modelling Lab at the University of Stuttgart, working under the supervision of Titus von der Malsburg. My research broadly focuses on real-time sentence processing.</p>
+                    <p>Currently, as part of a DFG-funded project, I primarily use eye-tracking techniques to investigate the incremental processing of resumptive pronouns in German.</p>
+                    <p>Prior to joining Stuttgart, I completed my Master's degree in Cultural and Cognitive Linguistics at the University of Munich (LMU).</p>
                 </div>
+            </div>
+        </section>
 
-                <div class="skills-card">
-                    <h3>Skills & Technologies</h3>
-                    <div class="skills-list">
-                        <span class="skill-tag">HTML5 & CSS3</span>
-                        <span class="skill-tag">JavaScript / TypeScript</span>
-                        <span class="skill-tag">Web Development</span>
-                        <span class="skill-tag">Responsive UI</span>
-                        <span class="skill-tag">Full-Stack Architecture</span>
-                        <span class="skill-tag">Git & GitHub</span>
-                        <span class="skill-tag">Problem Solving</span>
-                        <span class="skill-tag">Algorithm Design</span>
+        <section class="section" id="news">
+            <div class="page-shell">
+                <div class="section-heading"><p class="section-label">NEWS</p></div>
+                <div class="news-list">
+                    <article class="news-item"><time class="date" datetime="2025-12">December 2025</time><div><h3>Started a PhD position at the University of Stuttgart</h3><p>I am working on the DFG-funded project: "Grammar or Working Memory? Incremental Processing of Resumptive Pronouns in Hebrew, Standard German, and Alemannic German".</p></div></article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="education">
+            <div class="page-shell details-grid">
+                <div>
+                    <p class="section-label">EDUCATION</p>
+                    <div class="timeline-list">
+                        <article class="timeline-item"><p class="date">2023 — 2025</p><div><h3>Master of Arts · Cultural and Cognitive Linguistics</h3><p>University of Munich (LMU Munich)</p></div></article>
+                        <article class="timeline-item"><p class="date">2019 — 2023</p><div><h3>Bachelor of Arts · German</h3><p>Shanghai International Studies University</p></div></article>
+                    </div>
+                </div>
+                <div id="skills">
+                    <p class="section-label">SKILLS</p>
+                    <div class="skill-groups">
+                        <div class="skill-group"><h3>Methodology</h3><p>Eye-tracking experiment design and data collection</p></div>
+                        <div class="skill-group"><h3>Data Analysis</h3><p>R programming for data manipulation, statistical modeling, and visualization</p></div>
+                        <div class="skill-group"><h3>Languages</h3><div class="language-list"><div class="language-row"><span>Mandarin Chinese</span><span>Native</span></div><div class="language-row"><span>English</span><span>Fluent</span></div><div class="language-row"><span>German</span><span>Advanced</span></div></div></div>
                     </div>
                 </div>
             </div>
+        </section>
+
         </div>
-    </section>
+    </div>
+    </main>
 
-    <!-- Projects Section -->
-    <section id="projects">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag">Portfolio</span>
-                <h2 class="section-title">Featured Projects</h2>
-                <p class="section-desc">Selected work and open-source contributions.</p>
-            </div>
-
-            <div class="projects-grid">
-                <div class="project-card">
-                    <div>
-                        <div class="project-icon">🚀</div>
-                        <h3>Modern Web Applications</h3>
-                        <p>Designing and developing responsive, lightning-fast web applications built on modern frameworks with seamless user experience.</p>
-                    </div>
-                    <a href="https://github.com/wangqibi" target="_blank" rel="noopener noreferrer" class="project-link">
-                        Explore Code <span>→</span>
-                    </a>
-                </div>
-
-                <div class="project-card">
-                    <div>
-                        <div class="project-icon">🎨</div>
-                        <h3>Creative UI/UX Systems</h3>
-                        <p>Crafting interactive UI components, design tokens, and aesthetic styling systems that provide cohesive brand experiences.</p>
-                    </div>
-                    <a href="https://github.com/wangqibi" target="_blank" rel="noopener noreferrer" class="project-link">
-                        Explore Code <span>→</span>
-                    </a>
-                </div>
-
-                <div class="project-card">
-                    <div>
-                        <div class="project-icon">💡</div>
-                        <h3>Algorithmic Solutions</h3>
-                        <p>Developing efficient computational algorithms and backend utilities to tackle data processing and engineering hurdles.</p>
-                    </div>
-                    <a href="https://github.com/wangqibi" target="_blank" rel="noopener noreferrer" class="project-link">
-                        Explore Code <span>→</span>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag">Connect</span>
-                <h2 class="section-title">Get In Touch</h2>
-                <p class="section-desc">Have a question or want to collaborate? Reach out anytime!</p>
-            </div>
-
-            <div class="contact-card">
-                <div class="contact-grid">
-                    <a href="mailto:wangqibi01@gmail.com" class="contact-item">
-                        <div class="contact-icon">✉️</div>
-                        <div class="contact-details">
-                            <h4>Email</h4>
-                            <span>wangqibi01@gmail.com</span>
-                        </div>
-                    </a>
-
-                    <a href="https://github.com/wangqibi" target="_blank" rel="noopener noreferrer" class="contact-item">
-                        <div class="contact-icon">🐙</div>
-                        <div class="contact-details">
-                            <h4>GitHub</h4>
-                            <span>github.com/wangqibi</span>
-                        </div>
-                    </a>
-
-                    <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="contact-item">
-                        <div class="contact-icon">💼</div>
-                        <div class="contact-details">
-                            <h4>LinkedIn</h4>
-                            <span>linkedin.com/in/wangqibi</span>
-                        </div>
-                    </a>
-
-                    <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="contact-item">
-                        <div class="contact-icon">🐦</div>
-                        <div class="contact-details">
-                            <h4>Twitter / X</h4>
-                            <span>@wangqibi</span>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <p>&copy; 2026 Qibi Wang. All rights reserved.</p>
-            <p><a href="#home">Back to top ↑</a></p>
-        </div>
-    </footer>
-
+    <footer><div class="page-shell footer-inner"><a href="#top">Back to top ↑</a></div></footer>
 </body>
 </html>
